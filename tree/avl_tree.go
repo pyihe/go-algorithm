@@ -1,6 +1,8 @@
 package tree
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 	平衡二叉树
@@ -53,7 +55,7 @@ func (avl *AVLNode) AddNode(data Element) (root *AVLNode, ok bool) {
 	defer func() {
 		if ok {
 			root = balance(avl)
-			root.Height = max(getHeight(root.Left), getHeight(root.Right)) + 1
+			root.Height = maxHeight(getHeight(root.Left), getHeight(root.Right)) + 1
 		}
 	}()
 
@@ -92,7 +94,7 @@ func (avl *AVLNode) RemoveNode(data Element) (root *AVLNode, ok bool) {
 	defer func() {
 		if ok && root != nil {
 			root = balance(root)
-			root.Height = max(getHeight(root.Left), getHeight(root.Right)) + 1
+			root.Height = maxHeight(getHeight(root.Left), getHeight(root.Right)) + 1
 		}
 	}()
 
@@ -132,7 +134,8 @@ func (avl *AVLNode) RemoveNode(data Element) (root *AVLNode, ok bool) {
 			return
 		}
 		//将左子树最大节点提升到头节点，并将该最大节点从左子树中删除
-		avl.Data = avl.Left.Max().Data
+		//avl.Data = avl.Left.Max().Data
+		avl.Data = maxNode(avl.Left).(*AVLNode).Data
 		avl.Left, ok = avl.Left.RemoveNode(avl.Data)
 		root = avl
 		return
@@ -166,8 +169,8 @@ func (avl *AVLNode) leftRotate() *AVLNode {
 	avl.Right = node.Left
 	node.Left = avl
 
-	avl.Height = max(getHeight(avl.Left), getHeight(avl.Right)) + 1
-	node.Height = max(getHeight(node.Left), getHeight(node.Right)) + 1
+	avl.Height = maxHeight(getHeight(avl.Left), getHeight(avl.Right)) + 1
+	node.Height = maxHeight(getHeight(node.Left), getHeight(node.Right)) + 1
 	return node
 }
 
@@ -184,8 +187,8 @@ func (avl *AVLNode) rightRotate() *AVLNode {
 	node.Right = avl      //avl降为左子树的右子树
 
 	//更新节点高度
-	avl.Height = max(getHeight(avl.Left), getHeight(avl.Right)) + 1
-	node.Height = max(getHeight(node.Left), getHeight(node.Right)) + 1
+	avl.Height = maxHeight(getHeight(avl.Left), getHeight(avl.Right)) + 1
+	node.Height = maxHeight(getHeight(node.Left), getHeight(node.Right)) + 1
 	return node
 }
 
@@ -203,8 +206,46 @@ func (avl *AVLNode) Max() *AVLNode {
 	return node
 }
 
+func maxNode(node interface{}) interface{} {
+	switch t := node.(type) {
+	case *AVLNode:
+		temp := t
+		for temp.Right != nil {
+			temp = temp.Right
+		}
+		return temp
+	case *RedBlackNode:
+		temp := t
+		for temp.Right.Data != nil {
+			temp = temp.Right
+		}
+		return temp
+	default:
+		return nil
+	}
+}
+
+func minNode(node interface{}) interface{} {
+	switch t := node.(type) {
+	case *AVLNode:
+		temp := t
+		for temp.Left != nil {
+			temp = temp.Left
+		}
+		return temp
+	case *RedBlackNode:
+		temp := t
+		for temp.Left.Data != nil {
+			temp = temp.Left
+		}
+		return temp
+	default:
+		return nil
+	}
+}
+
 //返回更大的那个值
-func max(h1, h2 int) int {
+func maxHeight(h1, h2 int) int {
 	if h1 > h2 {
 		return h1
 	} else {

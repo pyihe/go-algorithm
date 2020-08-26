@@ -23,7 +23,7 @@ import (
 
 type Element interface {
 	Value() interface{}
-	Compare(Element) int //相等返回0，小于返回-1，大于返回1
+	Compare(Element) int //相等返回0，小于返回负数，大于返回正数
 }
 
 //二叉搜索树: 左边的节点都比跟节点小，右边的节点都比跟节点大
