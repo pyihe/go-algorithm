@@ -97,28 +97,17 @@ func (h *HuffmanTree) Coding(target interface{}) (result string) {
 	switch t := target.(type) {
 	case string:
 		s = t
-		for _, t := range s {
-			v := string(t)
-			if c, ok := h.codeSet[v]; !ok {
-				panic("invalid code: " + v)
-			} else {
-				result += c
-			}
-		}
 	case []byte:
 		s = string(t)
-		for _, t := range s {
-			v := string(t)
-			if c, ok := h.codeSet[v]; !ok {
-				panic("invalid code: " + v)
-			} else {
-				result += c
-			}
-		}
-	default:
-		return
 	}
-
+	for _, t := range s {
+		v := string(t)
+		if c, ok := h.codeSet[v]; !ok {
+			panic("invalid code: " + v)
+		} else {
+			result += c
+		}
+	}
 	return result
 }
 
