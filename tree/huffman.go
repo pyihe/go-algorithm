@@ -62,7 +62,7 @@ func (h *HuffmanNode) PreTraverse() (result string) {
 	return
 }
 
-//赫夫曼树结构，这里使用的byte作为源数据类型
+//赫夫曼树结构，这里使用的interface作为源数据类型
 type HuffmanTree struct {
 	root    *HuffmanNode           //根节点
 	leaf    HuffmanNodeList        //所有叶子节点（即数据对应的节点）
