@@ -25,5 +25,6 @@
 3. [赫夫曼树](https://github.com/pyihe/go-algorithm/blob/master/tree/huffman_tree.go)
 4. [B+树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_plus_tree.go)
 5. [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/tree/avl_tree.go)
+6. [前缀树](https://github.com/pyihe/go-algorithm/blob/master/tree/trie.go)
 
 ### To Be Continue...
