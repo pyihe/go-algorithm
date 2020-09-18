@@ -65,6 +65,7 @@ func NewBTree(m int) *BTree {
 	}
 }
 
+//便于打印调试
 func (b *BTree) String() (result string) {
 	if b.Root != nil {
 		return b.Root.String()
@@ -72,6 +73,7 @@ func (b *BTree) String() (result string) {
 	return
 }
 
+//便于打印调试
 func (b *BNode) String() (result string) {
 	for _, v := range b.Data {
 		result += fmt.Sprintf("%v->", v.Key)
@@ -82,7 +84,7 @@ func (b *BNode) String() (result string) {
 	return
 }
 
-//插入kv
+//插入关键字
 func (b *BTree) Insert(key int, value interface{}) {
 	kv := &KeyData{
 		Key:   key,
@@ -103,6 +105,7 @@ func (b *BTree) Insert(key int, value interface{}) {
 	b.Root = root
 }
 
+//查询关键字所在的结点
 func (b *BTree) Search(key int) *BNode {
 	if b.Root == nil {
 		return nil
@@ -110,7 +113,7 @@ func (b *BTree) Search(key int) *BNode {
 	return b.Root.search(key)
 }
 
-//删除key
+//删除key对应的关键字
 func (b *BTree) Remove(targetKey int) bool {
 	if b.Root == nil {
 		return false
@@ -162,7 +165,7 @@ func (b *BNode) remove(m int, targetKey int) bool {
 	return targetNode.removeAtMid(ceil, targetKey)
 }
 
-//targetKey在非叶子结点中
+//如果targetKey在非叶子结点中
 func (b *BNode) removeAtMid(ceil int, targetKey int) bool {
 	targetKeyNode := b.getTargetKeyNode(targetKey)
 	if targetKeyNode == nil {
@@ -219,12 +222,13 @@ func (b *BNode) removeAtMid(ceil int, targetKey int) bool {
 
 	b.insertChild(newNode)
 
+	//因为子树的关键字都等于ceil，所以即使合并了也达不到分裂的条件
 	//newNode.split(m)
 
 	return true
 }
 
-//targetKey在叶子结点中
+//如果targetKey在叶子结点中
 func (b *BNode) removeAtLeaf(ceil int, targetKey int) bool {
 	dataLen := len(b.Data)
 	//目标结点内的关键字数量大于math.Ceil(m/2)-1，这时删除不会破坏B树的性质，可以直接删除
@@ -366,7 +370,7 @@ func (b *BNode) split(m int) (root *BNode) {
 		Parent: parent,
 		Data:   biggerKey,
 	}
-	//这里需要重新分配孩子节点，以promoteKey为中心，小的放在smallerNode里面，其他的放在biggerNode里面
+	//这里需要重新分配孩子节点，以promoteKey为中心，小的放在smallerNode里面，其他的放在biggerNode里面，并绑定父子结点关系
 	for i := range b.Children {
 		if i <= mid {
 			b.Children[i].Parent = smallerNode
@@ -386,13 +390,15 @@ func (b *BNode) split(m int) (root *BNode) {
 		smallerNode.Parent = parent
 		biggerNode.Parent = parent
 	} else {
-		//从父结点中删除当前节点，并将新生成的节点添加到父结点的孩子结点中
+		//从父结点中删除当前节点，并且在父节点中找到步骤一中新生成的两个节点应该插入的位置
 		parent.removeChild(b)
 		parent.insertChild(smallerNode)
 		parent.insertChild(biggerNode)
 	}
-	//3. 在父节点中找到步骤一中新生成的两个节点应该插入的位置，并绑定父子结点关系
+
+	//3. 将晋升的关键字插入父结点
 	parent.insertKeyData(promoteKey)
+
 	//4. 然后递归的对父节点执行分裂
 	root = parent.split(m)
 	return
