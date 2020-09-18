@@ -23,8 +23,9 @@
 1. [二叉搜索树](https://github.com/pyihe/go-algorithm/blob/master/tree/binary_search_tree.go)
 2. [红黑树](https://github.com/pyihe/go-algorithm/blob/master/tree/red_black_tree.go)
 3. [赫夫曼树](https://github.com/pyihe/go-algorithm/blob/master/tree/huffman_tree.go)
-4. [B+树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_plus_tree.go)
-5. [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/tree/avl_tree.go)
-6. [前缀树](https://github.com/pyihe/go-algorithm/blob/master/tree/trie.go)
+4. [B树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_tree.go)
+5. [B+树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_plus_tree.go)
+6. [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/tree/avl_tree.go)
+7. [前缀树](https://github.com/pyihe/go-algorithm/blob/master/tree/trie.go)
 
 ### To Be Continue...
