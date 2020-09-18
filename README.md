@@ -1,8 +1,6 @@
 ## Go语言算法
 用Go语言实现一些算法数据+结构
 
-一天天，一点点，积少成多...
-
 ### 线性结构
 1. [单链表](https://github.com/pyihe/go-algorithm/blob/master/link/single_link.go)
 2. [循环链表](https://github.com/pyihe/go-algorithm/blob/master/link/circular_link.go)
