@@ -24,7 +24,7 @@
 2. [红黑树](https://github.com/pyihe/go-algorithm/blob/master/tree/red_black_tree.go)
 3. [赫夫曼树](https://github.com/pyihe/go-algorithm/blob/master/tree/huffman_tree.go)
 4. [B树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_tree.go)
-5. [B+树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_plus_tree.go)
+5. [B+树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_plus.go)
 6. [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/tree/avl_tree.go)
 7. [前缀树](https://github.com/pyihe/go-algorithm/blob/master/tree/trie.go)
 
