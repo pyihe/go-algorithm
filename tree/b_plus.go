@@ -19,3 +19,30 @@ package tree
 */
 
 //TODO code
+
+//叶子结点中的记录
+type Record struct {
+	Key   int         //关键字
+	Value interface{} //记录
+}
+
+//非终端结点中的关键字信息
+type Key struct {
+	Key   int        //关键字
+	Child *BPlusNode //每个关键字都对应一个子树(如果存在子树的话则子树和关键字为一一对应的关系)
+}
+
+//B+树
+type BPlusTree struct {
+	M int //阶数
+}
+
+//结点
+type BPlusNode struct {
+
+}
+
+type Leaf struct {
+	Next *Leaf      //指向下一个相邻的叶子结点
+	Data []*KeyData //叶子结点中包含记录(数据)
+}

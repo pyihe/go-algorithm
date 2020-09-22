@@ -38,15 +38,13 @@ func NewAVLTree(data Element) *AVLNode {
 
 //根左右
 func (avl *AVLNode) String() string {
+	if avl == nil {
+		return ""
+	}
 	var result string
 	result += fmt.Sprintf("%v ", avl.Data.Value())
-	if avl.Left != nil {
-		result += avl.Left.String()
-	}
-
-	if avl.Right != nil {
-		result += avl.Right.String()
-	}
+	result += avl.Left.String()
+	result += avl.Right.String()
 	return result
 }
 

@@ -43,25 +43,19 @@ func NewTree(element Element) *BinaryTreeNode {
 
 //输出整棵树
 func (tree *BinaryTreeNode) String() string {
+	if tree == nil {
+		return ""
+	}
 	var result string
-	if tree.Left != nil {
-		result += tree.Left.String()
-	}
-
-	//for i := 0; i < tree.ValueCnt; i++ {
-	//	result += fmt.Sprintf("%v ", tree.Data.Value())
-	//}
+	result += tree.Left.String()
 	result += fmt.Sprintf("%v ", tree.Data.Value())
-
-	if tree.Right != nil {
-		result += tree.Right.String()
-	}
+	result += tree.Right.String()
 	return result
 }
 
 //输出节点数据
 func (tree *BinaryTreeNode) DataString() string {
-	return fmt.Sprintf("%v ", tree.Data)
+	return fmt.Sprintf("%v ", tree.Data.Value())
 }
 
 //添加节点
@@ -201,47 +195,34 @@ func (tree *BinaryTreeNode) Min() *BinaryTreeNode {
 /*二叉树遍历（递归）*/
 //前序遍历:以当前节点为根节点，根——>左——>右
 func (tree *BinaryTreeNode) PreTraverseRecursion() (treeString string) {
+	if tree == nil {
+		return
+	}
 	treeString += tree.DataString()
-
-	if tree.Left != nil {
-		treeString += tree.Left.PreTraverseRecursion()
-	}
-
-	if tree.Right != nil {
-		treeString += tree.Right.PreTraverseRecursion()
-	}
-	//fmt.Println(fmt.Sprintf("treeString = [%v]", treeString))
+	treeString += tree.Left.PreTraverseRecursion()
+	treeString += tree.Right.PreTraverseRecursion()
 	return
 }
 
 //中序遍历:以当前节点为根节点，左——>根——>右
 func (tree *BinaryTreeNode) MidTraverseRecursion() (treeString string) {
-	if tree.Left != nil {
-		treeString += tree.Left.MidTraverseRecursion()
+	if tree == nil {
+		return
 	}
-
+	treeString += tree.Left.MidTraverseRecursion()
 	treeString += tree.DataString()
-
-	if tree.Right != nil {
-		treeString += tree.Right.MidTraverseRecursion()
-	}
-	//fmt.Println(fmt.Sprintf("treeString = [%v]", treeString))
+	treeString += tree.Right.MidTraverseRecursion()
 	return
 }
 
 //后续遍历：以当前节点为根节点，左——>右——>根
 func (tree *BinaryTreeNode) PostTraverseRecursion() (treeString string) {
-	if tree.Left != nil {
-		treeString += tree.Left.PostTraverseRecursion()
+	if tree == nil {
+		return
 	}
-
-	if tree.Right != nil {
-		treeString += tree.Right.PostTraverseRecursion()
-	}
-
+	treeString += tree.Left.PostTraverseRecursion()
+	treeString += tree.Right.PostTraverseRecursion()
 	treeString += tree.DataString()
-
-	//fmt.Println(fmt.Sprintf("treeString = [%v]", treeString))
 	return
 }
 
@@ -309,17 +290,17 @@ func (tree *BinaryTreeNode) PreTraverse() (result string) {
 	3、每次出栈一个元素，需要判断该元素是否存在右节点，如果存在，则重复步骤1
 */
 func (tree *BinaryTreeNode) MidTraverse() (result string) {
-	stack := &Stack{
-		List: list.New(),
-	}
+	stack := list.New()
 
 	node := tree
 	for node != nil || stack.Len() > 0 {
 		if node != nil {
-			stack.Push(node)
+			stack.PushBack(node)
 			node = node.Left
 		} else {
-			node = stack.Pop().(*BinaryTreeNode)
+			ele := stack.Back()
+			stack.Remove(ele)
+			node = ele.Value.(*BinaryTreeNode)
 			result += node.DataString()
 			node = node.Right
 		}
@@ -337,21 +318,20 @@ func (tree *BinaryTreeNode) MidTraverse() (result string) {
 	如果一个节点同时存在左右子节点，按照后序遍历的规则，最后一个出栈元素为一定为该节点的右子节点，此时该节点的子节点已经遍历完，需要将该节点出栈并输出
 */
 func (tree *BinaryTreeNode) PostTraverse() (result string) {
-	stack := &Stack{
-		List: list.New(),
-	}
+	stack := list.New()
 
 	node := tree
 	var topNode, lastNode *BinaryTreeNode //top为栈顶元素、last为最后出栈的元素
 
 	for node != nil || stack.Len() > 0 {
 		if node != nil {
-			stack.Push(node)
+			stack.PushBack(node)
 			node = node.Left
 		} else {
-			topNode = stack.Top().(*BinaryTreeNode)
+			ele := stack.Back().Value
+			topNode = ele.(*BinaryTreeNode)
 			if topNode.Right == nil || topNode.Right == lastNode {
-				stack.Pop()
+				stack.Remove(stack.Back())
 				result += topNode.DataString()
 				lastNode = topNode
 			} else {

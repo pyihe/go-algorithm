@@ -67,14 +67,14 @@ func NewBTree(m int) *BTree {
 
 //便于打印调试
 func (b *BTree) String() (result string) {
-	if b.Root != nil {
-		return b.Root.String()
-	}
-	return
+	return b.Root.String()
 }
 
 //便于打印调试
 func (b *BNode) String() (result string) {
+	if b == nil {
+		return
+	}
 	for _, v := range b.Data {
 		result += fmt.Sprintf("%v->", v.Key)
 	}
