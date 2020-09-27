@@ -10,13 +10,13 @@
     * [栈](https://github.com/pyihe/go-algorithm/blob/master/list/stack.go)
 
 2. 树
-    * [二叉搜索树](https://github.com/pyihe/go-algorithm/blob/master/tree/binary_search_tree.go)
-    * [红黑树](https://github.com/pyihe/go-algorithm/blob/master/tree/red_black_tree.go)
-    * [赫夫曼树](https://github.com/pyihe/go-algorithm/blob/master/tree/huffman_tree.go)
-    * [B树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_tree.go)
-    * [B+树](https://github.com/pyihe/go-algorithm/blob/master/tree/b_plus.go)
-    * [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/tree/avl_tree.go)
-    * [前缀树](https://github.com/pyihe/go-algorithm/blob/master/tree/trie.go)
+    * [二叉搜索树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/binary_search_tree.go)
+    * [红黑树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/red_black_tree.go)
+    * [赫夫曼树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/huffman_tree.go)
+    * [B树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/b_tree.go)
+    * [B+树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/b_plus.go)
+    * [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/avl_tree.go)
+    * [前缀树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/trie.go)
 ___
 ### 算法
 1. 排序
