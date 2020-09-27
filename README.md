@@ -1,22 +1,20 @@
-## Go语言算法
-用Go语言实现一些算法数据+结构
-
 ---
 ### 数据结构
 1. 线性结构
-    * [单链表](https://github.com/pyihe/go-algorithm/blob/master/link/single_link.go)
-    * [循环链表](https://github.com/pyihe/go-algorithm/blob/master/link/circular_link.go)
-    * [队列](https://github.com/pyihe/go-algorithm/blob/master/list/stack.go)
-    * [栈](https://github.com/pyihe/go-algorithm/blob/master/list/stack.go)
+    * [单链表](https://github.com/pyihe/go-algorithm/blob/master/data-structure/link/single_link.go)
+    * [循环链表](https://github.com/pyihe/go-algorithm/blob/master/data-structure/link/circular_link.go)
+    * [队列](https://github.com/pyihe/go-algorithm/blob/master/data-structure/list/stack.go)
+    * [栈](https://github.com/pyihe/go-algorithm/blob/master/data-structure/list/stack.go)
 
 2. 树
-    * [二叉搜索树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/binary_search_tree.go)
-    * [红黑树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/red_black_tree.go)
-    * [赫夫曼树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/huffman_tree.go)
+    * [二叉搜索树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/binary_search.go)
+    * [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/avl.go)
+    * [前缀树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/trie.go)
+    * [赫夫曼树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/huffman.go)
     * [B树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/b_tree.go)
     * [B+树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/b_plus.go)
-    * [平衡二叉树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/avl_tree.go)
-    * [前缀树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/trie.go)
+    * [红黑树](https://github.com/pyihe/go-algorithm/blob/master/data-structure/tree/red_black.go)
+    
 ___
 ### 算法
 1. 排序
