@@ -15,7 +15,7 @@ func getPivot(src []int, start, end int) int {
 		panic("invalid start or end value.")
 	}
 	index := start - 1 //用于存放最后返回的pivot
-	pivot := end //选取最后一个元素为pivot
+	pivot := end       //选取最后一个元素为pivot
 
 	for i := start; i < end; i++ {
 		if src[i] <= src[pivot] { //将所有比基准值小的移动到前面，这样大的都在后面
